@@ -29,11 +29,11 @@ pub fn help_text(err: Error) -> &'static str {
         ),
         (
             ErrorKind::AddrInUse,
-            "Kill the process that uses current address"
+            "Kill the process that uses address"
         ),
         (
             ErrorKind::AddrNotAvailable,
-            "the requested address was not local"
+            "the requested address was not local. run at a local address"
         ),
         (
             ErrorKind::BrokenPipe, 

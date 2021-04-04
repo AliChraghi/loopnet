@@ -29,6 +29,7 @@ impl HttpServer {
         let pool = ThreadPool::new(self.workers);
         match TcpListener::bind(SocketAddr::new(self.ip, self.port)) {
             Ok(listener) => {
+                logger::log(format!("Listening at {}:{}", self.ip, self.port).as_str());
                 for stream in listener.incoming() {
                     let stream = stream.unwrap();
                     pool.execute(|| {

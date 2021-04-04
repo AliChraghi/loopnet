@@ -3,21 +3,21 @@ pub mod logger {
 	use std::io::Error;
 	// Log
 	pub fn log(m: &str) {
-		println!("{}", color(37, format!("[ LOG ] {}", m)));
+		println!("{}", color(92, format!("[ HOOP ] {}", m)));
 	}
 
 	pub fn help(m: Error) {
-		println!("{}", color(36, format!("[ HLP ] {}", tips::help_text(m))));
+		println!("{}", color(96, format!("[ HOOP:HLP ] {}", tips::help_text(m))));
 	}
 
 	// Log Warnings
 	pub fn warning(m: &str) {
-		println!("{}",color_bold(93, format!("[ WRN ] {}", m)));
+		println!("{}",color_bold(93, format!("[ HOOP:WRN ] {}", m)));
 	}
 
 	// Log Errors
 	pub fn error(m: Error) {
-		eprintln!("{}", color_bold(91, format!("[ ERR ] {}", m)));
+		eprintln!("{}", color_bold(91, format!("[ HOOP:ERR ] {}", m)));
 		help(m);
 	}
 	
