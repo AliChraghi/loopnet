@@ -1,28 +1,31 @@
-// Log
-pub fn log(m: &str) {
-	eprintln!("{}", rgb(80, 255, 80, format!("[ HOOP ] {}", m).as_str()));
-}
+pub mod logger {
+	use crate::tips;
+	use std::io::Error;
+	// Log
+	pub fn log(m: &str) {
+		println!("{}", color(37, format!("[ LOG ] {}", m)));
+	}
 
-// Log Errors
-pub fn log_error(m: &str) {
-	eprintln!("{}", rgb(255, 30, 30, format!("[ HOOP ] {}", m).as_str()));
-}
+	pub fn help(m: Error) {
+		println!("{}", color(36, format!("[ HLP ] {}", tips::help_text(m))));
+	}
 
-// Log Warnings
-pub fn log_warning(m: &str) {
-	eprintln!("{}", rgb(255, 255, 80, format!("[ HOOP ] {}", m).as_str()));
-}
+	// Log Warnings
+	pub fn warning(m: &str) {
+		println!("{}",color_bold(93, format!("[ WRN ] {}", m)));
+	}
 
-// format_rgb() is a Cross-Platform RGB Formater, it was used to write colored text in shell.
-// for more info read https://en.wikipedia.org/wiki/ANSI_escape_code
-pub fn format_rgb(open: u8, close: u8, r: u8, g: u8, b: u8, msg: &str) -> String {
-	return format!("\x1b[{};2;{};{};{}m{}\x1b[{}m", open, r, g, b, msg, close);
-}
+	// Log Errors
+	pub fn error(m: Error) {
+		eprintln!("{}", color_bold(91, format!("[ ERR ] {}", m)));
+		help(m);
+	}
+	
+	pub fn color_bold(color: u8, message: String) -> String {
+		return format!("\x1b[1m\x1b[{}m{}\x1b[0m", color, message)
+	}
 
-pub fn rgb(r: u8, g: u8, b: u8, msg: &str) -> String {
-	return format_rgb(38, 39, r, g, b, msg);
-}
-
-pub fn bg_rgb(r: u8, g: u8, b: u8, msg: &str) -> String {
-	return format_rgb(48, 49, r, g, b, msg);
+	pub fn color(color: u8, message: String) -> String {
+		return format!("\x1b[{}m{}\x1b[0m", color, message)
+	}
 }

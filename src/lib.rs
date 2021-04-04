@@ -1,4 +1,5 @@
-mod server;
-pub mod utils;
-pub mod router;
-pub use server::*;
+mod http;           // declare HTTP Module
+mod utils;
+mod tips;
+mod thread;
+pub use http::*;    // use everything in HTTP

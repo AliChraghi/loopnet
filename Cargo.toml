@@ -1,5 +1,5 @@
 [package]
-name = "HOOP"
+name = "hoop"
 version = "0.1.0"
 authors = ["Ali <mac85127@gmail.com>"]
 edition = "2018"

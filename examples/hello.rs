@@ -1,5 +1,7 @@
-use loopnet;
+use hoop;
+use std::net::{IpAddr, Ipv4Addr};
+
 fn main() {
-    let server = loopnet::HttpServer::new([127, 0, 0, 1], 8020);
-    server.listen();
+    let s = hoop::HttpServer::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), 80, 4);
+    s.listen();
 }
