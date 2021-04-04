@@ -1,5 +1,5 @@
-mod http;           // declare HTTP Module
-mod utils;
-mod tips;
+mod http; // declare HTTP Module
 mod thread;
-pub use http::*;    // use everything in HTTP
+mod tips;
+mod utils;
+pub use http::*; // use everything in HTTP

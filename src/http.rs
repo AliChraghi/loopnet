@@ -1,5 +1,5 @@
 use crate::thread::*;
-use crate::utils::logger;
+use crate::utils::out;
 use std::io::{Read, Write};
 use std::net::{IpAddr, Ipv4Addr, SocketAddr, TcpListener, TcpStream};
 
@@ -29,7 +29,7 @@ impl HttpServer {
         let pool = ThreadPool::new(self.workers);
         match TcpListener::bind(SocketAddr::new(self.ip, self.port)) {
             Ok(listener) => {
-                logger::log(format!("Listening at {}:{}", self.ip, self.port).as_str());
+                out::log(format!("Listening at {}:{}", self.ip, self.port).as_str());
                 for stream in listener.incoming() {
                     let stream = stream.unwrap();
                     pool.execute(|| {
@@ -37,7 +37,7 @@ impl HttpServer {
                     });
                 }
             }
-            Err(error) => logger::error(error),
+            Err(error) => out::error(error),
         }
     }
 }

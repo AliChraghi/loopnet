@@ -1,8 +1,9 @@
+use std::panic;
+use std::process;
 use std::sync::mpsc;
 use std::sync::Arc;
 use std::sync::Mutex;
 use std::thread;
-
 
 pub struct ThreadPool {
     workers: Vec<Worker>,
@@ -17,15 +18,13 @@ enum Message {
 }
 
 impl ThreadPool {
-    /// Create a new ThreadPool.
-    ///
-    /// The size is the number of threads in the pool.
-    ///
-    /// # Panics
-    ///
-    /// The `new` function will panic if the size is zero.
     pub fn new(size: usize) -> ThreadPool {
-        assert!(size > 0);
+
+        // panic::set_hook(process::exit(1));
+
+        // if size < 1 {
+        //     panic!("Not Found!")
+        // }
 
         let (sender, receiver) = mpsc::channel();
 

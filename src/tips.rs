@@ -1,7 +1,7 @@
 use std::{
     array::IntoIter,
     collections::HashMap,
-    io::{Error, ErrorKind},
+    io::{ErrorKind, Error},
     iter::FromIterator,
 };
 
@@ -36,16 +36,16 @@ pub fn help_text(err: Error) -> &'static str {
             "the requested address was not local. run at a local address"
         ),
         (
-            ErrorKind::BrokenPipe, 
+            ErrorKind::BrokenPipe,
             "There is currently no solution. create an issue at https://github.com/AliChraghi/hoop/issues/new"
         ),
     ]));
 
     loop {
         for (k, v) in &tips {
-        if k == &err.kind() {
-            return v;
+            if k == &err.kind() {
+                return v;
+            }
         }
     }
-};
 }
