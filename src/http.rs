@@ -30,6 +30,7 @@ impl HttpServer {
         match TcpListener::bind(SocketAddr::new(self.ip, self.port)) {
             Ok(listener) => {
                 out::log(format!("Listening at {}:{}", self.ip, self.port).as_str());
+                out::warning("Fail");
                 for stream in listener.incoming() {
                     let stream = stream.unwrap();
                     pool.execute(|| {

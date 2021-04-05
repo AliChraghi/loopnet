@@ -1,4 +1,3 @@
-use std::panic;
 use std::process;
 use std::sync::mpsc;
 use std::sync::Arc;
@@ -19,8 +18,8 @@ enum Message {
 
 impl ThreadPool {
     pub fn new(size: usize) -> ThreadPool {
-
-        // panic::set_hook(process::exit(1));
+        
+        // panic!("Normal panic");
 
         // if size < 1 {
         //     panic!("Not Found!")
